@@ -1,34 +1,55 @@
-import { Component } from '@angular/core';
-import { Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Component, ViewChild } from '@angular/core';
+import { Events, MenuController, Nav, Platform, 
+  ModalController, AlertController, ToastController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
 import { BLE } from '@ionic-native/ble'
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { File } from '@ionic-native/file';
 
-import { HomePage } from '../pages/home/home';
+// Pages
 import { TutorialPage } from '../pages/tutorial/tutorial';
+import { HomePage } from '../pages/home/home';
+//Providers
+//import { UserDataProvider, DataList } from '../providers/user-data/user-data';
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [BLE]
 })
+
 export class MyApp {
+  numeroBicosDefault: number = 102;
+  referenciaDefault: number = 400;
+  erroAdmDefault: number = 10;
+  unidade: string = "mm";
+  coleta: string = "bt";
   rootPage:any;
-  
-  configFolder: any;
-  dataFolder: any;
-  
-  constructor(
-    public platform: Platform, 
-    public statusBar: StatusBar, 
-    public splashScreen: SplashScreen,
-    private diagnostic: Diagnostic,
-    public alertCtrl: AlertController,
-    private ble: BLE,
+  //Data: DataList;
+  filename: string;
+  dirPath;
+  configFolder;
+  dataFolder;
+  peripheral:any = {};
+
+  @ViewChild(Nav) nav: Nav;
+
+  constructor(    
+    public events: Events,
+    //public userData: UserDataProvider,
+    public menu: MenuController,
+    public platform: Platform,
     public storage: Storage,
-    public file: File,) {
-      
+    public splashScreen: SplashScreen,
+    public statusBar: StatusBar,
+    public modal: ModalController,
+    public alertCtrl: AlertController,
+    public file: File,
+    public toastCrtl: ToastController,
+    private ble: BLE,
+    private diagnostic: Diagnostic) {
+
       this.file.checkDir(this.file.dataDirectory, 'FLUX').catch(_error => {
         this.file.createDir(this.file.externalRootDirectory,'FLUX',true);
         this.configFolder = this.file.createDir((this.file.externalRootDirectory + 'FLUX'),'config',true);
@@ -37,6 +58,18 @@ export class MyApp {
 
       statusBar.styleDefault();
       splashScreen.hide();
+
+      // this.userData.getData().then((value) => {
+      // this.Data = value;
+      // }).catch(_error => {
+      //   this.Data.coleta = this.coleta;
+      //   this.Data.erroAdm = this.erroAdmDefault;
+      //   this.Data.numeroBicos = this.numeroBicosDefault;
+      //   this.Data.referencia = this.referenciaDefault;
+      //   this.Data.titulo = "Ensaio1";
+      //   this.Data.unidade = this.unidade;
+      //   this.userData.setData(this.Data);
+      // });
 
       this.storage.get('hasSeenTutorial')
       .then((hasSeenTutorial) => {
@@ -47,6 +80,15 @@ export class MyApp {
         }
         this.platformReady()
       });
+  }
+  
+  openTutorial() {
+    this.nav.setRoot(TutorialPage);
+  }
+
+  openBTModal() {
+    const BTModal = this.modal.create('BluetoothPage');
+    BTModal.present();
   }
 
   errorAlert(message,error){
@@ -88,6 +130,4 @@ export class MyApp {
       })
     });
   }
-
 }
-

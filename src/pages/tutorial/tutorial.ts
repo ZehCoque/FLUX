@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams , ViewController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../../pages/home/home';
 import { Storage } from '@ionic/storage';
 
@@ -12,7 +12,6 @@ export class TutorialPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private view: ViewController,
     public storage: Storage) {
   }
 

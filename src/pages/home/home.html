@@ -1,14 +1,40 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      {{titulo}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content padding class="no-scroll">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button (click) = "openTutorial()" small clear><ion-icon name="school" icon-only></ion-icon></button>
+      </ion-col>
+      <ion-col>
+        <button ion-button end (click) = "openBTconfig()" clear large><ion-icon name="bluetooth" icon-only></ion-icon></button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+    <ion-grid>
+  <ion-row>
+    <ion-col text-center>
+      <p>Nº</p>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col text-center>
+      <ion-input type="number" disabled="false"></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col text-center>
+      <button ion-button clear icon-only><ion-icon name="arrow-dropleft" ></ion-icon></button>
+    </ion-col>
+    <ion-col text-center>
+      <ion-input type="number" disabled="false"></ion-input>
+    </ion-col>
+  </ion-row>
+  </ion-grid>
 </ion-content>
