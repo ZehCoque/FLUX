@@ -19,16 +19,7 @@ import { HomePage } from '../pages/home/home';
 })
 
 export class MyApp {
-  ref_default: number = 400;
-  max_err_default: number = 10;
-  units: string = "mm";
   rootPage:any;
-  //Data: DataList;
-  filename: string;
-  dirPath;
-  configFolder;
-  dataFolder;
-  peripheral:any = {};
 
   @ViewChild(Nav) nav: Nav;
 
@@ -50,18 +41,6 @@ export class MyApp {
 
       statusBar.styleDefault();
       splashScreen.hide();
-
-      // this.userData.getData().then((value) => {
-      // this.Data = value;
-      // }).catch(_error => {
-      //   this.Data.coleta = this.coleta;
-      //   this.Data.erroAdm = this.erroAdmDefault;
-      //   this.Data.numeroBicos = this.numeroBicosDefault;
-      //   this.Data.referencia = this.referenciaDefault;
-      //   this.Data.titulo = "Ensaio1";
-      //   this.Data.unidade = this.unidade;
-      //   this.userData.setData(this.Data);
-      // });
 
       this.storage.get('hasSeenTutorial')
       .then((hasSeenTutorial) => {

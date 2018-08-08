@@ -23,6 +23,9 @@ export class HomePage {
   filename: string;
   configFolder: any;
   inputDataFolder: any;
+  ref_default: number = 400;
+  max_err_default: number = 10;
+  units: string = "L/min";
 
   constructor(
     public navCtrl: NavController,
@@ -31,6 +34,18 @@ export class HomePage {
     public file: File,
     public toastCtrl: ToastController,
     public alertCtrl: AlertController) {
+
+            // this.userData.getData().then((value) => {
+      // this.Data = value;
+      // }).catch(_error => {
+      //   this.Data.coleta = this.coleta;
+      //   this.Data.erroAdm = this.erroAdmDefault;
+      //   this.Data.numeroBicos = this.numeroBicosDefault;
+      //   this.Data.referencia = this.referenciaDefault;
+      //   this.Data.titulo = "Ensaio1";
+      //   this.Data.unidade = this.unidade;
+      //   this.userData.setData(this.Data);
+      // });
 
   }
 

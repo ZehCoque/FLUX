@@ -7,6 +7,7 @@ import { Diagnostic } from '@ionic-native/diagnostic';
 import { BLE } from '@ionic-native/ble';
 import { File } from '@ionic-native/file';
 import { IonicStorageModule } from '@ionic/storage';
+import { UserDataProvider } from '../providers/user-data/user-data';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -36,6 +37,7 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
     Diagnostic,
     BLE,
     File,
+    UserDataProvider,
   ]
 })
 export class AppModule {}
