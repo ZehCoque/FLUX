@@ -1,12 +1,11 @@
 import { StatusBar } from '@ionic-native/status-bar';
 import { Component, ViewChild } from '@angular/core';
-import { Events, MenuController, Nav, Platform, 
-  ModalController, AlertController, ToastController } from 'ionic-angular';
+import { Nav, Platform, ModalController, AlertController, ToastController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
 import { BLE } from '@ionic-native/ble'
 import { Diagnostic } from '@ionic-native/diagnostic';
-import { File } from '@ionic-native/file';
+//import { File } from '@ionic-native/file';
 
 // Pages
 import { TutorialPage } from '../pages/tutorial/tutorial';
@@ -20,11 +19,9 @@ import { HomePage } from '../pages/home/home';
 })
 
 export class MyApp {
-  numeroBicosDefault: number = 102;
-  referenciaDefault: number = 400;
-  erroAdmDefault: number = 10;
-  unidade: string = "mm";
-  coleta: string = "bt";
+  ref_default: number = 400;
+  max_err_default: number = 10;
+  units: string = "mm";
   rootPage:any;
   //Data: DataList;
   filename: string;
@@ -36,25 +33,20 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   constructor(    
-    public events: Events,
+    //public events: Events,
     //public userData: UserDataProvider,
-    public menu: MenuController,
+    //public menu: MenuController,
     public platform: Platform,
     public storage: Storage,
     public splashScreen: SplashScreen,
     public statusBar: StatusBar,
     public modal: ModalController,
     public alertCtrl: AlertController,
-    public file: File,
+    //public file: File,
     public toastCrtl: ToastController,
     private ble: BLE,
     private diagnostic: Diagnostic) {
 
-      this.file.checkDir(this.file.dataDirectory, 'FLUX').catch(_error => {
-        this.file.createDir(this.file.externalRootDirectory,'FLUX',true);
-        this.configFolder = this.file.createDir((this.file.externalRootDirectory + 'FLUX'),'config',true);
-        this.dataFolder = this.file.createDir((this.file.externalRootDirectory + 'FLUX'),'data',true);
-      });
 
       statusBar.styleDefault();
       splashScreen.hide();
@@ -80,15 +72,6 @@ export class MyApp {
         }
         this.platformReady()
       });
-  }
-  
-  openTutorial() {
-    this.nav.setRoot(TutorialPage);
-  }
-
-  openBTModal() {
-    const BTModal = this.modal.create('BluetoothPage');
-    BTModal.present();
   }
 
   errorAlert(message,error){

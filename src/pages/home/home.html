@@ -13,7 +13,7 @@
         <button ion-button (click) = "openTutorial()" small clear icon-only><ion-icon name="md-information-circle"></ion-icon></button>
       </ion-col>
       <ion-col>
-        <button ion-button end (click) = "openBTconfig()" clear icon-only><ion-icon name="bluetooth"></ion-icon></button>
+        <button ion-button end (click) = "openBTConfig()" clear icon-only><ion-icon name="bluetooth"></ion-icon></button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -30,28 +30,28 @@
   </ion-row>
   <ion-row>
     <ion-col text-center>
-      <button ion-button icon-only><ion-icon name="arrow-dropleft-circle" ></ion-icon></button>
+      <button ion-button icon-only (click) = "lastValue()" ><ion-icon name="arrow-dropleft-circle" ></ion-icon></button>
     </ion-col>
     <ion-col text-center>
       <ion-input type="number" disabled="false"></ion-input>
     </ion-col>
     <ion-col text-center>
-        <button ion-button icon-only><ion-icon name="arrow-dropright-circle" ></ion-icon></button>
+        <button ion-button icon-only (click) = "saveAndNext()"><ion-icon name="arrow-dropright-circle"></ion-icon></button>
     </ion-col>
   </ion-row>
   <ion-row>
       <ion-col text-center>
-          L/min
+          {{units}}
       </ion-col>
   </ion-row>
   <ion-row>
       <ion-col text-center>
-          <button ion-button clear icon-only><ion-icon name="share">Exportar</ion-icon></button>
+          <button ion-button clear icon-only (click) = "export()"><ion-icon name="share">Exportar</ion-icon></button>
       </ion-col>
   </ion-row>
   <ion-row>
     <ion-col>
-        <button ion-button clear icon-only><ion-icon name="open" >Carregar</ion-icon></button>
+        <button ion-button clear icon-only (click) = "load()"><ion-icon name="open">Carregar</ion-icon></button>
     </ion-col>
     <ion-col>
         <button ion-button clear icon-only><ion-icon name="add-circle">Novo</ion-icon></button>
